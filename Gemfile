@@ -9,3 +9,7 @@ gem 'webmock', '~> 1.8.11'
 gem 'vcr', '~> 2.3.0'
 gem 'xmlrpc'
 gem 'pry'
+
+# Text similarity
+gem "amatch"
+# gem "jaro_winkler"
