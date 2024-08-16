@@ -3,6 +3,8 @@ module OSDb
     class Name
       require 'amatch'
       include Amatch
+
+      # TODO: Make this an option
       MINIMUM_MATCH_PERCENTAGE = 0.70
 
       def initialize(server)
