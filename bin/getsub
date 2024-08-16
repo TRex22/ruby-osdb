@@ -6,6 +6,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'osdb'))
 
 
 class GetSub
+  TIME_BETWEEN_CALLS = 2 # seconds
 
   def initialize
     @options = {:language => OSDb.default_language.to_iso639_2b, :force => false, :dir => nil, :methods => 'h', :language_extension => false }
@@ -64,7 +65,9 @@ class GetSub
         else
           puts "* No sub found"
         end
+
         puts
+        sleep(TIME_BETWEEN_CALLS)
       rescue Exception => e
         report_exception(e)
       end
