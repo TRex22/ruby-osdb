@@ -2,10 +2,6 @@ module OSDb
   class MovieFile
 
     EXTENSIONS = %w(avi mpg m4v mkv mov ogv mp4)
-    EXCLUSIONS = [
-      "SD",
-      "DVD",
-    ]
 
     attr_reader :path, :language
 
@@ -41,13 +37,14 @@ module OSDb
       @name ||= File.basename(path, File.extname(path))
 
       EXCLUSIONS.each do |exclusion|
-        @name = @name.gsub(exclusion.downcase, '')
-        @name = @name.gsub(exclusion.upcase, '')
+        @name = @name.gsub("SD", '')gsub("DVD", '')
       end
 
       if @name[-1] == ' '
         @name = @name[0, @name.size - 1]
       end
+
+      @name
     end
     
     CHUNK_SIZE = 64 * 1024 # in bytes
