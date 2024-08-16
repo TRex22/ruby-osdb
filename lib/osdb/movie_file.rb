@@ -33,8 +33,21 @@ module OSDb
       @size ||= File.size(path)
     end
 
+    def rearrange_name
+      # Move Season and Episode to the end of the name
+      # TODO: Handle dots
+      season_code_regex = /(S\d{1,3}E\d{1,3})/
+      season_code = @name[season_code_regex]
+
+      @name = "#{@name.gsub(season_code_regex, '').gsub("  ", ' ')} #{season_code}"
+    end
+
     def name
       @name ||= File.basename(path, File.extname(path)).gsub("SD", '').gsub("DVD", '')
+
+      if @name[-1] == ' '
+        @name = @name[0, @name.size - 1]
+      end
 
       if @name[-1] == ' '
         @name = @name[0, @name.size - 1]

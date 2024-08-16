@@ -6,7 +6,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'osdb'))
 
 
 class GetSub
-  TIME_BETWEEN_CALLS = 2 # seconds
+  TIME_BETWEEN_CALLS = 1 # seconds
 
   def initialize
     @options = {:language => OSDb.default_language.to_iso639_2b, :force => false, :dir => nil, :methods => 'h', :language_extension => false }
@@ -60,7 +60,14 @@ class GetSub
           next
         end
 
-        if sub = subtitle_finder.find_sub_for(movie_file, @options[:language])
+        sub = subtitle_finder.find_sub_for(movie_file, @options[:language])
+
+        unless sub
+          movie_file.rearrange_name
+          sub = subtitle_finder.find_sub_for(movie_file, @options[:language])
+        end
+
+        if sub
           download_sub!(sub, movie_file)
         else
           puts "* No sub found"
