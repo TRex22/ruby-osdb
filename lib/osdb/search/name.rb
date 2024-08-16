@@ -22,10 +22,6 @@ module OSDb
         name
           .downcase
           .gsub(/[\s\.\-\_]+/, ' ')
-          .gsub("SD", '')
-          .gsub("DVD", '')
-          .gsub("  .", '.')
-          .gsub(" .", '.')
       end
 
     end
