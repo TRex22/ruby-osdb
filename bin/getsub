@@ -64,6 +64,7 @@ class GetSub
 
         unless sub
           movie_file.rearrange_name
+          puts "* Search subtitles for #{movie_file.name}"
           sub = subtitle_finder.find_sub_for(movie_file, @options[:language])
         end
 
