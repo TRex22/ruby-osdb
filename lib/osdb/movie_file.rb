@@ -39,7 +39,7 @@ module OSDb
       season_code_regex = /(S\d{1,3}E\d{1,3})/
       season_code = @name[season_code_regex]
 
-      @name = "#{@name.gsub(season_code_regex, '').gsub("  ", ' ')} #{season_code}"
+      @name = "#{@name.gsub(season_code_regex, '').gsub("  ", ' ')} #{season_code}".gsub("&", "and")
     end
 
     def name

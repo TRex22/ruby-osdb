@@ -13,20 +13,20 @@ module OSDb
         subs = @server.search_subtitles(:sublanguageid => language, :query => movie.name)
         normalized_movie_name = normalize_name(movie.name)
 
-        subs.select! do |sub|
+        selected_subs = subs.select do |sub|
           normalized_filename = normalize_name(sub.filename)
           normalized_filename.index(normalized_movie_name)
         end
 
-        if subs.nil? || subs == []
+        if selected_subs.nil? || selected_subs == []
           # If indexing does not match take the closest one
-          subs.select! do |sub|
+          selected_subs = subs.select do |sub|
             normalized_filename = normalize_name(sub.filename)
             match_via_jaro_winkler(normalized_filename, normalized_movie_name) >= MINIMUM_MATCH_PERCENTAGE
           end
         end
 
-        subs
+        selected_subs
       end
 
       protected
