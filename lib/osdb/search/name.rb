@@ -19,7 +19,13 @@ module OSDb
       protected
 
       def normalize_name(name)
-        name.downcase.gsub(/[\s\.\-\_]+/, ' ')
+        name
+          .downcase
+          .gsub(/[\s\.\-\_]+/, ' ')
+          .gsub("SD", '')
+          .gsub("DVD", '')
+          .gsub("  .", '.')
+          .gsub(" .", '.')
       end
 
     end
