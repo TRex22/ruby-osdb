@@ -37,7 +37,7 @@ module OSDb
       @name ||= File.basename(path, File.extname(path))
 
       EXCLUSIONS.each do |exclusion|
-        @name = @name.gsub("SD", '')gsub("DVD", '')
+        @name = @name.gsub("SD", '').gsub("DVD", '')
       end
 
       if @name[-1] == ' '
