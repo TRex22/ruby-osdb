@@ -5,8 +5,8 @@ gemspec
 
 gem 'rake'
 gem 'rspec', '< 2.99'
-gem 'webmock', '~> 1.8.11'
-gem 'vcr', '~> 2.3.0'
+gem 'webmock', '~> 3.23.1'
+gem 'vcr', '~> 6.2.0'
 gem 'xmlrpc'
 gem 'pry'
 
